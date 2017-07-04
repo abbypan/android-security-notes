@@ -1,0 +1,269 @@
+# Introduction
+
+<?rfc toc="yes"?>
+<?rfc symrefs="yes"?>
+<?rfc sortrefs="yes"?>
+<?rfc subcompact="no"?>
+<?rfc compact="yes"?>
+<?rfc comments="yes"?>
+
+DDoS attacks are growing rapidly in the past year.
+Many sources are involved in DDoS attack traffic, botnet PCs, compromised Internet servers, public DNS resolvers, NTP servers, free proxy servers, etc.
+Due to the various types of attack sources, more and more DDoS protection service providers try to improve their capability to detect and classify DDoS attacks, using many big data security analytics techniques.
+
+Like Virus Definitions, data sharing among DDoS protection service providers becomes important because it can avoid repeating same detection and classification work when the providers try to defense attacks.
+The shared defense data can be white-list, black-list and source ip identification results, etc.
+This can speed up the defense to an DDoS attack.
+
+The solutions described in this draft are based on [](#I-D.draft-ietf-dots-architecture). 
+This data sharing models are compatible with DOTS protocol.
+
+# Requirements Notation
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [](#RFC2119).
+
+# Terminology
+
+Basic terms used in this specification are defined in [](#I-D.draft-ietf-dots-requirements).
+
+# Data Sharing Cooperative Mechanism
+
+When large internet services encounter high CPU and memory usage DDoS Attacks, they constantly don't need the flow lead resources of other DDoS protection service providers, but urgently need to get security defense analysis results from others in application layer.
+Therefore, DDoS protection service providers can share the defense data of their own DDoS protection system, and get data from others.
+Moreover, the DDoS protection service providers can choose to share different levels of data details to different customers, like [](#DNSBL) and [](#CLAMWIN-Virus-Definitions) databases.
+
+A customer can fully trust the sharing data from a specific DDoS protection service provider. However, sharing data conflicts can occur if a customer subscribes to multiple providers. The data sets from mutiple provider SHOULD be refined before using.
+The following sections discuss three architectures to implement the data sharing cooperative: Single-Trust, Local-Refine, Alliance-Integrate.
+
+## Single-Trust Architecture
+
+A customer can pull the sharing data from a specific Anti-DDoS Provider. 
+For example, a website customer can get the latest proxy black-list of CC DDoS Attack from the Anti-DDoS Provider, to make up local flow filtering policy.
+
+    +-----V-----+           +-----V-----+ 
+    | Customer  <-----------| Anti-DDoS |
+    |           |           | Provider  |
+    +-----------+           +-----------+
+    Figure 1: Single-Trust Architecture
+
+## Local-Refine Architecture
+
+A customer can pull the sharing data from a group of Anti-DDoS Providers, and refined the data itself.
+For example, a dns authority customer can get local forwarding recursive dns lists from a group of ISP Anti-DDoS Providers, refine the lists satisfied with its netflow feature, to build up a best-effort serving white-list for rate-limiting, which is metioned in [](#I-D.draft-ietf-dots-use-cases) Section 3.1.4.
+
+    +-----V-----+           +-----V-----+  
+    |           |           | Anti-DDoS |
+    |           <-----------> Provider  |
+    |           |           |    (A)    |
+    |           |           +-----------+
+    |           |
+    |           |           +-----V-----+  
+    |           |           | Anti-DDoS |
+    | Customer  <-----------> Provider  |
+    |           |           |    (B)    |
+    |           |           +-----------+
+    |           |
+    |           |           +-----V-----+  
+    |           |           | Anti-DDoS |
+    |           <-----------> Provider  |
+    |           |           |    (C)    |
+    +-----------+           +-----------+
+    Figure 2: Local-Refine Architecture
+
+## Alliance-Integrate Architecture
+
+Conflicts may occur if more and more Anti-DDoS Providers share their data in alliance.
+Anti-DDoS Providers push the data to the alliance.
+The alliance SHOULD integrate the data from Anti-DDoS Providers, classify the data for different attack scenarios.
+Customers can choose the data satisfied with their businesses from the alliance.
+For example, a recursive dns service customer can get the latest botnet control domain list which is integrated by the alliance, to protect infected computers and mobile agents.
+
+                            +-----V-----+           +-----V-----+  
+                            |           |           | Anti-DDoS |
+    +-----V-----+           |           <-----------> Provider  |
+    |           |           |           |           |    (A)    |
+    | Customer  <-----------|           |           +-----------+
+    |   (X)     |           |           |
+    +-----------+           |           |           +-----V-----+  
+                            |           |           | Anti-DDoS |
+                            | Alliance  <-----------> Provider  |
+                            |           |           |    (B)    |
+    +-----V-----+           |           |           +-----------+
+    |           |           |           |
+    | Customer  <-----------|           |           +-----V-----+  
+    |   (Y)     |           |           |           | Anti-DDoS |
+    +-----------+           |           <-----------> Provider  |
+                            |           |           |    (C)    |
+                            +-----------+           +-----------+
+    Figure 3: Alliance-Integrate Architecture
+
+# Data Sharing DOTS Protocol
+
+DOTS protocol can run on HTTPS (with TLS) and support user/role:password authentication for data sharing.
+Data Provider needs to install the SSL Certificate onto its web server to initiate a secure session with customers.
+The Certificate binds provider's company name together with its domain name.
+
+All of the HTTPS requests APIs are in RESTful style, and the contents are in JSON format.
+The following sections describe the details of data sharing DOTS messages.
+
+## PULL Data
+
+Customer can get sharing data from Anti-DDoS Providers or their Alliance.
+
+    METHOD : POST
+    URL    : https://{host}:{port}/dots/api/getsharing
+    REQUEST body:
+    {
+        "customer_name":   string,
+        "customer_id"  :   string,
+        "serivce_type" :   string, 
+    }
+    RESPONSE body:
+    { 
+        "black_list" : [
+            {
+                    "object"             : string,
+                    "protocol"           : string,
+                    "latest_record_time" : timestamp,
+                    "note"               : string 
+            }, 
+            ...
+        ], 
+
+        "white_list" : [
+            {
+                    "object"             : string,
+                    "protocol"           : string,
+                    "latest_record_time" : timestamp,
+                    "note"               : string 
+            },
+            ...
+        ], 
+
+        "ratelimit_list" : [
+            {
+                    "object"             : string,
+                    "protocol"           : string,
+                    "latest_record_time" : timestamp,
+                    "note"               : string 
+            },
+            ...
+        ], 
+        
+        "botnet_list" : [
+            {
+                    "object"             : string,
+                    "protocol"           : string,
+                    "latest_record_time" : timestamp,
+                    "note"               : string 
+            },
+            ...
+        ], 
+
+        "malicious_list" : [
+            {
+                    "object"             : string,
+                    "protocol"           : string,
+                    "latest_record_time" : timestamp,
+                    "note"               : string 
+            },
+            ...
+        ], 
+
+        "newbee_list" : [
+            {
+                    "object"             : string,
+                    "protocol"           : string,
+                    "latest_record_time" : timestamp,
+                    "note"               : string 
+            },
+            ...
+        ], 
+
+        ...
+    }
+
+## PUSH Data
+
+Customer can push their own sharing data to the Alliance.
+
+    METHOD : POST
+    URL    : https://{host}:{port}/dots/api/putsharing
+    REQUEST body:
+    {
+        "customer_name":   string,
+        "customer_id"  :   string,
+        "serivce_type" :   string, 
+        "data"         :  
+    { 
+        "black_list" : [
+            {
+                    "object"             : string,
+                    "protocol"           : string,
+                    "latest_record_time" : timestamp,
+                    "note"               : string 
+            }, 
+            ...
+        ], 
+
+        "white_list" : [
+            {
+                    "object"             : string,
+                    "protocol"           : string,
+                    "latest_record_time" : timestamp,
+                    "note"               : string 
+            },
+            ...
+        ], 
+
+        "ratelimit_list" : [
+            {
+                    "object"             : string,
+                    "protocol"           : string,
+                    "latest_record_time" : timestamp,
+                    "note"               : string 
+            },
+            ...
+        ], 
+
+        "botnet_list" : [
+            {
+                    "object"             : string,
+                    "protocol"           : string,
+                    "latest_record_time" : timestamp,
+                    "note"               : string 
+            },
+            ...
+        ], 
+
+        "malicious_list" : [
+            {
+                    "object"             : string,
+                    "protocol"           : string,
+                    "latest_record_time" : timestamp,
+                    "note"               : string 
+            },
+            ...
+        ], 
+
+        "newbee_list" : [
+            {
+                    "object"             : string,
+                    "protocol"           : string,
+                    "latest_record_time" : timestamp,
+                    "note"               : string 
+            },
+            ...
+        ], 
+
+        ...
+    }
+ 
+    RESPONSE body:
+    {
+        "status"    : string 
+    }
+
+# IANA Considerations
+
+No need to describe any request regarding number assignment.

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<reference anchor='RFC2119'>
+    <front>
+        <title>Key words for use in RFCs to Indicate Requirement Levels</title>
+        <author initials='S.' surname='Bradner' fullname=''><organization /></author>
+        <date year='1997' month='March' />
+    </front>
+    <seriesInfo name='RFC' value='2119' />
+    <format type='TXT' target='http://www.rfc-editor.org/rfc/rfc2119.txt' />
+</reference>
+

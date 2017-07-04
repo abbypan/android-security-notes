@@ -1,0 +1,73 @@
+<?xml version="1.0" ?>
+<!DOCTYPE rfc SYSTEM 'rfc2629.dtd' [
+<!ENTITY pandocMiddle PUBLIC '' 'middle.xml'>
+
+<!ENTITY pandocRefnorm  PUBLIC '' 'ref.norm.xml'>
+<!ENTITY pandocRefinfo  PUBLIC '' 'ref.info.xml'>
+]>
+
+<rfc ipr="trust200902" category="info" docName="draft-pan-dots-data-sharing-co-ddos">
+ <front>
+        <title abbrev="Data Sharing Cooperative DDoS Protection">Data Sharing Cooperative DDoS Protection</title>
+
+        <author initials="L." surname="Pan" fullname="Lanlan Pan">
+            <organization></organization>
+            <address>
+                <postal>
+                    <street></street>
+                    <street></street>
+                    <city>Beijing</city> <region></region>
+                    <code></code>
+                    <country>China</country>
+                </postal>
+                <phone></phone>
+                <email>abbypan@gmail.com</email>
+                <uri>https://github.com/abbypan</uri>
+            </address>
+        </author>
+
+        <author initials="Y." surname="Fu" fullname="Yu Fu">
+            <organization>CNNIC</organization>
+            <address>
+                <postal>
+                    <street>No.4 South 4th Street, Zhongguancun</street>
+                    <street></street>
+                    <city>Beijing</city> <region></region>
+                    <code></code>
+                    <country>China</country>
+                </postal>
+                <phone></phone>
+                <email>fuyu@cnnic.cn</email>
+            </address>
+        </author>
+
+        <date month="July" year="2017"/>
+
+        <area>sec</area>
+        <workgroup>dots</workgroup>
+        <keyword>ddos</keyword>
+        <abstract>
+            <t>DDoS attacks take place every day globally.  Like Virus Definitions,
+   data sharing among DDoS mitigation service providers becomes
+   important because it can avoid repeating same detection and
+   classification work when the providers try to denfense DDoS attacks.</t>
+   <t>This document describes possible mechanisms which implement the data
+   sharing cooperative DDoS protection.  The described data models are
+   compatible with DOTS protocol.</t>
+        </abstract>
+</front>
+
+<middle>
+&pandocMiddle;
+</middle>
+
+<back>
+     <references title="Normative References">
+                 &pandocRefnorm;
+             </references>
+     <references title="Informative References">
+                 &pandocRefinfo;
+             </references>
+</back>
+
+</rfc>

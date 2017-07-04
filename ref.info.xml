@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<reference anchor='I-D.draft-ietf-dots-architecture' target='https://tools.ietf.org/html/draft-ietf-dots-architecture-00' >
+    <front>
+        <title abbrev='I-D.draft-ietf-dots-architecture'>I-D.draft-ietf-dots-architecture</title>
+        <author initials='' surname='' fullname=''>
+            <organization></organization>
+            <address>
+                <email></email></address></author>
+        <date year='' month='' />
+    </front>
+    <format type='' target='' />
+</reference>
+
+<reference anchor='I-D.draft-ietf-dots-requirements' target='https://tools.ietf.org/html/draft-ietf-dots-requirements-02' >
+    <front>
+        <title abbrev='I-D.draft-ietf-dots-requirements'>I-D.draft-ietf-dots-requirements</title>
+        <author initials='' surname='' fullname=''>
+            <organization></organization>
+            <address>
+                <email></email></address></author>
+        <date year='' month='' />
+    </front>
+    <format type='' target='' />
+</reference>
+
+<reference anchor='DNSBL' target='http://www.dnsbl.info/' >
+    <front>
+        <title abbrev='DNSBL'>DNSBL</title>
+        <author initials='' surname='' fullname=''>
+            <organization></organization>
+            <address>
+                <email></email></address></author>
+        <date year='' month='' />
+    </front>
+    <format type='' target='' />
+</reference>
+
+<reference anchor='CLAMWIN-Virus-Definitions' target='http://www.clamwin.com/' >
+    <front>
+        <title abbrev='CLAMWIN-Virus-Definitions'>CLAMWIN Virus Definitions</title>
+        <author initials='' surname='' fullname=''>
+            <organization></organization>
+            <address>
+                <email></email></address></author>
+        <date year='' month='' />
+    </front>
+    <format type='' target='' />
+</reference>
+
+<reference anchor='I-D.draft-ietf-dots-use-cases' target='https://tools.ietf.org/html/draft-ietf-dots-use-cases-01' >
+    <front>
+        <title abbrev='I-D.draft-ietf-dots-use-cases'>I-D.draft-ietf-dots-use-cases</title>
+        <author initials='' surname='' fullname=''>
+            <organization></organization>
+            <address>
+                <email></email></address></author>
+        <date year='' month='' />
+    </front>
+    <format type='' target='' />
+</reference>
