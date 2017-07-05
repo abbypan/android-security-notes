@@ -7,16 +7,14 @@
 <?rfc compact="yes"?>
 <?rfc comments="yes"?>
 
-DDoS attacks are growing rapidly in the past year.
-Many sources are involved in DDoS attack traffic, botnet PCs, compromised Internet servers, public DNS resolvers, NTP servers, free proxy servers, etc.
-Due to the various types of attack sources, more and more DDoS protection service providers try to improve their capability to detect and classify DDoS attacks, using many big data security analytics techniques.
+DDoS attacks are growing rapidly nowadays.
+Many sources are involved in DDoS attack traffic, such as botnet PCs, compromised Internet servers, public DNS resolvers, NTP servers, and free proxy servers.
+Due to the various types of attack sources, more and more DDoS protection service providers try to improve their ability to detect and classify DDoS attacks, using big data security analytics techniques.
 
-Like Virus Definitions, data sharing among DDoS protection service providers becomes important because it can avoid repeating same detection and classification work when the providers try to defense attacks.
-The shared defense data can be white-list, black-list and source ip identification results, etc.
-This can speed up the defense to an DDoS attack.
+Like Virus Definitions, data sharing among DDoS protection service providers becomes more and more important because it can avoid repeating  detection and classification work and speed up the defense to DDoS attack.
+The shared defense data can be white-list, black-list and identificated source ip addresses list, etc.
 
-The solutions described in this draft are based on [](#I-D.draft-ietf-dots-architecture). 
-This data sharing models are compatible with DOTS protocol.
+The solutions described in this draft are based on [](#I-D.draft-ietf-dots-architecture), the data sharing models are compatible with DOTS protocol.
 
 # Requirements Notation
 
@@ -28,11 +26,13 @@ Basic terms used in this specification are defined in [](#I-D.draft-ietf-dots-re
 
 # Data Sharing Cooperative Mechanism
 
-When large internet services encounter high CPU and memory usage DDoS Attacks, they constantly don't need the flow lead resources of other DDoS protection service providers, but urgently need to get security defense analysis results from others in application layer.
-Therefore, DDoS protection service providers can share the defense data of their own DDoS protection system, and get data from others.
-Moreover, the DDoS protection service providers can choose to share different levels of data details to different customers, like [](#DNSBL) and [](#CLAMWIN-Virus-Definitions) databases.
+When large internet services encounter high CPU/memory usage DDoS Attacks (maybe from distributed zombie network), they constantly don't need the flow lead resources of other DDoS protection service providers, but urgently need to get security defense analysis results in application layer.
+Therefore, DDoS protection service providers can share the defense analysis data of their own DDoS protection system, and get data from others, like [](#DNSBL) and [](#CLAMWIN-Virus-Definitions) databases.
+Moreover, the DDoS protection service providers can share different levels of data details to different customers.
 
-A customer can fully trust the sharing data from a specific DDoS protection service provider. However, sharing data conflicts can occur if a customer subscribes to multiple providers. The data sets from mutiple provider SHOULD be refined before using.
+A customer can fully trust the sharing data from a specific DDoS protection service provider. 
+However, sharing data conflicts may occur if a customer subscribes to multiple providers. 
+The data sets from mutiple provider SHOULD be refined before used.
 The following sections discuss three architectures to implement the data sharing cooperative: Single-Trust, Local-Refine, Alliance-Integrate.
 
 ## Single-Trust Architecture
@@ -49,7 +49,7 @@ For example, a website customer can get the latest proxy black-list of CC DDoS A
 ## Local-Refine Architecture
 
 A customer can pull the sharing data from a group of Anti-DDoS Providers, and refined the data itself.
-For example, a dns authority customer can get local forwarding recursive dns lists from a group of ISP Anti-DDoS Providers, refine the lists satisfied with its netflow feature, to build up a best-effort serving white-list for rate-limiting, which is metioned in [](#I-D.draft-ietf-dots-use-cases) Section 3.1.4.
+For example, a authoritative dns customer can get recursive resolver dns lists from a group of ISP Anti-DDoS Providers, refine the lists satisfied with its netflow feature, to build up a best-effort serving white-list for rate-limiting, the scenario is also metioned in [](#I-D.draft-ietf-dots-use-cases) Section 3.1.4.
 
     +-----V-----+           +-----V-----+  
     |           |           | Anti-DDoS |
@@ -125,7 +125,7 @@ Customer can get sharing data from Anti-DDoS Providers or their Alliance.
                     "object"             : string,
                     "protocol"           : string,
                     "latest_record_time" : timestamp,
-                    "note"               : string 
+                    "identification"     : string 
             }, 
             ...
         ], 
@@ -135,7 +135,7 @@ Customer can get sharing data from Anti-DDoS Providers or their Alliance.
                     "object"             : string,
                     "protocol"           : string,
                     "latest_record_time" : timestamp,
-                    "note"               : string 
+                    "identification"     : string 
             },
             ...
         ], 
@@ -145,7 +145,7 @@ Customer can get sharing data from Anti-DDoS Providers or their Alliance.
                     "object"             : string,
                     "protocol"           : string,
                     "latest_record_time" : timestamp,
-                    "note"               : string 
+                    "identification"     : string 
             },
             ...
         ], 
@@ -155,7 +155,7 @@ Customer can get sharing data from Anti-DDoS Providers or their Alliance.
                     "object"             : string,
                     "protocol"           : string,
                     "latest_record_time" : timestamp,
-                    "note"               : string 
+                    "identification"     : string 
             },
             ...
         ], 
@@ -165,7 +165,7 @@ Customer can get sharing data from Anti-DDoS Providers or their Alliance.
                     "object"             : string,
                     "protocol"           : string,
                     "latest_record_time" : timestamp,
-                    "note"               : string 
+                    "identification"     : string 
             },
             ...
         ], 
@@ -175,7 +175,7 @@ Customer can get sharing data from Anti-DDoS Providers or their Alliance.
                     "object"             : string,
                     "protocol"           : string,
                     "latest_record_time" : timestamp,
-                    "note"               : string 
+                    "identification"     : string 
             },
             ...
         ], 
@@ -201,7 +201,7 @@ Customer can push their own sharing data to the Alliance.
                     "object"             : string,
                     "protocol"           : string,
                     "latest_record_time" : timestamp,
-                    "note"               : string 
+                    "identification"     : string 
             }, 
             ...
         ], 
@@ -211,7 +211,7 @@ Customer can push their own sharing data to the Alliance.
                     "object"             : string,
                     "protocol"           : string,
                     "latest_record_time" : timestamp,
-                    "note"               : string 
+                    "identification"     : string 
             },
             ...
         ], 
@@ -221,7 +221,7 @@ Customer can push their own sharing data to the Alliance.
                     "object"             : string,
                     "protocol"           : string,
                     "latest_record_time" : timestamp,
-                    "note"               : string 
+                    "identification"     : string 
             },
             ...
         ], 
@@ -231,7 +231,7 @@ Customer can push their own sharing data to the Alliance.
                     "object"             : string,
                     "protocol"           : string,
                     "latest_record_time" : timestamp,
-                    "note"               : string 
+                    "identification"     : string 
             },
             ...
         ], 
@@ -241,7 +241,7 @@ Customer can push their own sharing data to the Alliance.
                     "object"             : string,
                     "protocol"           : string,
                     "latest_record_time" : timestamp,
-                    "note"               : string 
+                    "identification"     : string 
             },
             ...
         ], 
@@ -251,7 +251,7 @@ Customer can push their own sharing data to the Alliance.
                     "object"             : string,
                     "protocol"           : string,
                     "latest_record_time" : timestamp,
-                    "note"               : string 
+                    "identification"     : string 
             },
             ...
         ], 
