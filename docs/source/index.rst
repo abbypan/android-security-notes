@@ -10,10 +10,11 @@ Android安全笔记
 
 .. toctree::
    :maxdepth: 1
-   :caption: boot
+   :caption: Boot
 
    boot/index
    boot/avb
+   boot/ods
 
 
 .. toctree::
@@ -26,7 +27,15 @@ Android安全笔记
 
 .. toctree::
    :maxdepth: 1
-   :caption: tls
+   :caption: TLS
 
    tls/verifier
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Credential
+
+   cred/identity-credential
+
 
