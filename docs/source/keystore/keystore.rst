@@ -42,29 +42,29 @@ Key and ID Attestation
 
 1. key attestation, android 7
 
-attestation key及对应的certificate chain，由产线写入。
+    attestation key及对应的certificate chain，由产线写入。
 
-根据application的需求生成key pair(public key & private key)，由attestation key对public key签发leaf certificate。
+    根据application的需求生成key pair(public key & private key)，由attestation key对public key签发leaf certificate。
 
-application server可以根据leaf certificate的chain，对public key的合法性进行认证。
+    application server可以根据leaf certificate的chain，对public key的合法性进行认证。
 
-application server 与 attestation server 之间可以有后台互联。
+    application server 与 attestation server 之间可以有后台互联。
 
-attestation相关信息在certificate的extension域。
+    attestation相关信息在certificate的extension域。
 
-**unique ID**
+    **unique ID**
 
-HBK is a unique hardware-bound secret known to the Trusted Execution Environment and never revealed by it.
+    HBK is a unique hardware-bound secret known to the Trusted Execution Environment and never revealed by it.
 
-基于HBK，结合counter/application ID/...等信息计算HMAC，作为unique ID。
+    基于HBK，结合counter/application ID/...等信息计算HMAC，作为unique ID。
 
 #.  ID attestation, android 8
 
-extension域里加一些attestation ID的关联信息。
+    extension域里加一些attestation ID的关联信息。
 
-注意server要给challenge/nonce。
+    注意server要给challenge/nonce。
 
-注意在初始化时会算一个mac值，用于后续检查device info是否出现变化。如果变化，则表示id attestation不可信。
+    注意在初始化时会算一个mac值，用于后续检查device info是否出现变化。如果变化，则表示id attestation不可信。
 
 Version Binding
 ----------------

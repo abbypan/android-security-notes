@@ -16,7 +16,7 @@ apk signature scheme v1
 
 以下以wechat apk为例
 
-1. manifest.mf
+- manifest.mf
 
 manifest.mf 为各资源文件的digest，例如：
 
@@ -34,7 +34,7 @@ manifest.mf 为各资源文件的digest，例如：
     SHA1-Digest: K/y4OJlp+JDHAkGomyWpdsUMK40=
 
 
-#. x.sf
+- x.sf
 
 x.sf 为manifest.mf里各资源块摘要信息的二次digest
 
@@ -75,7 +75,7 @@ x.sf 中包含对manifest.mf的摘要信息
 
     SHA1-Digest-Manifest: NTBvqC+3bBhUhQAKSFjl2tsMuOI=
 
-#. x.rsa
+- x.rsa
 
 查看pkcs7签名文件
 
@@ -111,7 +111,7 @@ x.sf 中包含对manifest.mf的摘要信息
 
     $ openssl dgst -md5 -verify pubkey.pem -signature x.sig x.sf
 
-#. summary
+- summary
 
 解压后才能进行签名校验
 
@@ -135,46 +135,46 @@ section 1, 3, 4 构造一个双层merkle tree：
 
 1. rollback protection
 
-为防止rollback回v1 signature，可以在 `META-INF/*.SF` 中添加 X-Android-APK-Signed : 2
+    为防止rollback回v1 signature，可以在 `META-INF/*.SF` 中添加 X-Android-APK-Signed : 2
 
-此时，对于支持v2 signature校验的platform，重打包攻击无法生效
+    此时，对于支持v2 signature校验的platform，重打包攻击无法生效
 
 #. 校验
 
-先验签（确保签名ok、选择强度最高的algorithm ID)
+    先验签（确保签名ok、选择强度最高的algorithm ID)
 
-确保digest与signature指定的algorithm ID一致
+    确保digest与signature指定的algorithm ID一致
 
-再验merkle tree
+    再验merkle tree
 
-最后验certificate(签名校验的pubkey必须与first certificate的publkey一致、确保能验到一个见过的/首次见的signer)
+    最后验certificate(签名校验的pubkey必须与first certificate的publkey一致、确保能验到一个见过的/首次见的signer)
 
 apk signature scheme v3, android 9
 ---------------------------------------
 
 1. 签名
 
-v3 签名的结构体与 v2签名基本一致, section 2 的 block ID 0xf05368c0。
+    v3 签名的结构体与 v2签名基本一致, section 2 的 block ID 0xf05368c0。
 
-支持指定minSDK, maxSDK，限定版本范围。
+    支持指定minSDK, maxSDK，限定版本范围。
 
-支持key rotation，即通过certificate chain链式信任，支持更新signing key。
+    支持key rotation，即通过certificate chain链式信任，支持更新signing key。
 
 #. 校验
 
-先验签
+    先验签
 
-再检查minSDK, maxSDK
+    再检查minSDK, maxSDK
 
-确保digest与signature指定的algorithm ID一致
+    确保digest与signature指定的algorithm ID一致
 
-再验merkle tree
+    再验merkle tree
 
-确保签名校验的pubkey必须与first certificate的publkey一致
+    确保签名校验的pubkey必须与first certificate的publkey一致
 
-如果proof-of-rotation设定了ID 0x3ba06f8c, 确保last certificate中的signer为旧的signer
+    如果proof-of-rotation设定了ID 0x3ba06f8c, 确保last certificate中的signer为旧的signer
 
-确保能验到一个见过的/首次见的signer
+    确保能验到一个见过的/首次见的signer
 
 apk signature scheme v4, android 11
 -----------------------------------------
@@ -191,14 +191,14 @@ v4签名的merkle tree与fs-verity的hash tree格式相同
 
 1. `apk_digest`
 
-`apk_digest` is the first available content digest in order
+    `apk_digest` is the first available content digest in order
 
 #. incremental 
 
-`Incremental File System <https://source.android.com/devices/architecture/kernel/incfs>`_
+    `Incremental File System <https://source.android.com/devices/architecture/kernel/incfs>`_
 
-merkle tree的特性，天然适合增量安装
+    merkle tree的特性，天然适合增量安装
 
-即签名校验通过后，优先安装指定偏移量的文件块，剩下的再慢慢装
+    即签名校验通过后，优先安装指定偏移量的文件块，剩下的再慢慢装
 
-适用于游戏包的安装场景，先装启动必须的，再装资源文件
+    适用于游戏包的安装场景，先装启动必须的，再装资源文件

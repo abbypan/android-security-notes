@@ -20,17 +20,17 @@ ios
 
 1. 开发版
 
-apple：私钥A-Priv、公钥A-Pub（ios设备上保留A-Pub）
+    apple：私钥A-Priv、公钥A-Pub（ios设备上保留A-Pub）
 
-开发者：私钥D-Priv、公钥D-Pub、apple网站使用A-Priv对D-Pub签名生成的证书D-Cert
+    开发者：私钥D-Priv、公钥D-Pub、apple网站使用A-Priv对D-Pub签名生成的证书D-Cert
 
-程序包：程序内容App、使用D-Priv对App进行签名P-Sig、Provisioning Profile
+    程序包：程序内容App、使用D-Priv对App进行签名P-Sig、Provisioning Profile
 
-其中，Provisioning Profile 包含{ D-Cert、设备ID列表、AppID、权限控制信息Entitlements }、以及apple网站使用A-Priv对上述信息集合进行签名C-Sig
+    其中，Provisioning Profile 包含{ D-Cert、设备ID列表、AppID、权限控制信息Entitlements }、以及apple网站使用A-Priv对上述信息集合进行签名C-Sig
 
 #. 发布版
 
-将含有Provisioning Profile信息的开发版程序提交到apple网站，apple网站校验通过后，会直接使用A-Priv对App重新签名后发布，无需使用D-Priv。
+    将含有Provisioning Profile信息的开发版程序提交到apple网站，apple网站校验通过后，会直接使用A-Priv对App重新签名后发布，无需使用D-Priv。
 
 
 对比

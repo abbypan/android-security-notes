@@ -40,21 +40,25 @@ attestation certificate 签发流程
 -----
 
 - 签发的attestation certificates为P-256，格式x.509v3。
+
 - 执行RKP签发过程时使用 ED25519签名/X25519通信，格式COSE/CBOR。
 
 信任关系
 -----------
 
-BCC Root = `DK_pub` -> ... -> BCC Leaf = `KM_pub` -> mac key -> public keys 
+BCC Root = DK_pub -> ... -> BCC Leaf = KM_pub -> mac key -> public keys 
 
-- 过渡：`DK_pub`工厂随机生成，`BCC Root`=`DK_pub` = `KM_pub`
-- BCC：`DK_pub`通过DICE机制生成，`BCC Root = DK_pub -> ... -> KM_pub`
+- 过渡： DK_pub 工厂随机生成，BCC Root=DK_pub = KM_pub
 
-`DK_pub`同步
+- BCC： DK_pub 通过DICE机制生成，BCC Root = DK_pub -> ... -> KM_pub
+
+DK_pub同步
 -------------
 
 `DK_pub` 可以直接工厂同步。
 
-`DK_pub` 还可以在出厂后首次boot时，与google server联网上报。上报`DK_pub`的流程与联网签发attestation certificates流程类似，区别主要在于：此时没有需要签发的pubKeys，即N=0; google server不返回attestation cert，而是登记 `DK_pub` 。
+`DK_pub` 还可以在出厂后首次boot时，与google server联网上报。上报 `DK_pub` 的流程与联网签发attestation certificates流程类似，区别主要在于：此时没有需要签发的pubKeys，即N=0; google server不返回attestation cert，而是登记 `DK_pub` 。
+
 - `DK_pub` 可以由SoC Vendor Root签名/Strongbox Vendor Root签名/OEM 签名/自签名，参考[ProtectedData.aidl]中的AdditionalDKSignatures。
+
 - 工厂提前向google server同步对应的root public key；工厂签发DKCertChain。

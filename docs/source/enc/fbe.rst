@@ -25,7 +25,8 @@ KM: Device Unique Key 结合 Unique Context (例如User Credential, Escrow token
 
 GK: 在User Credential保护synthetic password的场景下，Gatekeeper 结合 Device Unique Key + User Credential派生一个Key，基于该Key与password handle计算一个Hmac值，做为Auth Token。KM校验该Auth Token，允许解密synthetic password。
 
-## FBE Credential Encrypted (CE) Key Protection
+FBE Credential Encrypted (CE) Key Protection
+-----------------------------------------------
 
 synthetic password 派生的key，用于加密FBE CE key。
 
@@ -33,7 +34,8 @@ synthetic password 派生的key，用于加密FBE CE key。
 
 加解密文件时，系统从kernel keyring中将key读入 Inline crypto engine，进行加解密。
 
-## Keyguard bound keys
+Keyguard bound keys
+----------------------
 
 仅在解锁的时候，才能decrypt file
 
@@ -49,9 +51,9 @@ qualcomm
 
 1. cryptographic binding
 
-attack: 通过给KM发fake signal，没有提供user credentials也能成功欺骗KM解密synthetic password
+    attack: 通过给KM发fake signal，没有提供user credentials也能成功欺骗KM解密synthetic password
 
-需要再加一层protection
+    需要再加一层protection
 
     a. user root key
 
@@ -77,37 +79,37 @@ attack: 通过给KM发fake signal，没有提供user credentials也能成功欺�
 
 #. Wrapped key support for FBE
 
-Wrapped key:
-- 确保FBE keys从不明文出现在high-level OS
-- short lifespan: 设备重启、或work profile shutdown后失效
+    Wrapped key:
+    - 确保FBE keys从不明文出现在high-level OS
+    - short lifespan: 设备重启、或work profile shutdown后失效
 
 #. Keymaster
 
-FBE CE class keys 由 keymaster生成，而非vold生成。
+    FBE CE class keys 由 keymaster生成，而非vold生成。
 
-Device Unique Key结合Unique Context派生一个key，该key用于加密FBE CE key，密文记为FBE CE keyblob。
+    Device Unique Key结合Unique Context派生一个key，该key用于加密FBE CE key，密文记为FBE CE keyblob。
 
-synthetic password派生的secret，用于加密FBE CE keyblob，密文记为FBE CE keyblob2（双层加密）。
+    synthetic password派生的secret，用于加密FBE CE keyblob，密文记为FBE CE keyblob2（双层加密）。
 
-此时，由于FBE CE key由keymaster保护，Android无法读取FBE CE key的明文。
+    此时，由于FBE CE key由keymaster保护，Android无法读取FBE CE key的明文。
 
 #. Wrapping of FBE keys
 
-Keymaster 生成一个 per-boot / per-class / per-user 的 ephemeral key (EK) 用于 wrap FBE class keys.
+    Keymaster 生成一个 per-boot / per-class / per-user 的 ephemeral key (EK) 用于 wrap FBE class keys.
 
 #. unlocking FBE CE key
 
-设备重启，用户解锁设备后，系统获取synthetic password。
+    设备重启，用户解锁设备后，系统获取synthetic password。
 
-通过synthetic password解密 FBE CE keyblob2，keymaster再解密FBE CE keyblob，获得FBE CE key。
+    通过synthetic password解密 FBE CE keyblob2，keymaster再解密FBE CE keyblob，获得FBE CE key。
 
-keymaster使用EK wrap FBE CE key，并将wrap key（密文）放入vold、Linux kernel keyring缓存。
+    keymaster使用EK wrap FBE CE key，并将wrap key（密文）放入vold、Linux kernel keyring缓存。
 
-当Linux kernel需要加解密文件时，调用TEE接口unwrap该key，获得FBE CE Key，并进一步派生 64 bytes 的 AES256-XTS key，载入 Inline Crypto Engine (ICE)。
+    当Linux kernel需要加解密文件时，调用TEE接口unwrap该key，获得FBE CE Key，并进一步派生 64 bytes 的 AES256-XTS key，载入 Inline Crypto Engine (ICE)。
 
 #. Secure key eviction
 
-多用户场景，切换用户凭据，之前的EK wrap key等信息从vold/key ring/keymaster/ICE全清掉。。。
+    多用户场景，切换用户凭据，之前的EK wrap key等信息从vold/key ring/keymaster/ICE全清掉。。。
 
 
 AES-XTS
