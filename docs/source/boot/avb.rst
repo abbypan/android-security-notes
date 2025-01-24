@@ -6,9 +6,8 @@ AVB
 ::
 
     pbl -> secure boot pub key
-    sbl -> avb pub key0
+    sbl -> {tee, u-boot} -> avb pub key0
     vbmeta -> boot/system/vendor, xxx partition’s pub key & rollback protection flag
-
 
 安全启动，保护partition，防回滚。
 
@@ -66,6 +65,7 @@ Android 9 及以前的设备可能使用system_other partition存储preoptimized
 system_other partition可以有/product/etc/security/avb/system_other.avbpubkey。
 
 不推荐此类分区启用avb。
+
 
 
 参考资料
