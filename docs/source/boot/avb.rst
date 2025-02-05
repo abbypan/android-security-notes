@@ -73,3 +73,4 @@ system_other partition可以有/product/etc/security/avb/system_other.avbpubkey�
 
 - `android verified boot 2.0 <https://android.googlesource.com/platform/external/avb/+/master/README.md>`_
 - `Verified Boot <https://source.android.com/security/verifiedboot>`_
+- `HKG18-124 Android Verified Boot 2.0 and U-boot <https://static.linaro.org/connect/hkg18/presentations/hkg18-124.pdf>`_
