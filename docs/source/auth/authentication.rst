@@ -92,13 +92,13 @@ Biometrics
 
 #. Fingerprint HAL 
 
-与fingerprint hardware相关的Serial Peripheral Interface (SPI) ，仅能由TEE访问，explict SELinux policy
+    与fingerprint hardware相关的Serial Peripheral Interface (SPI) ，仅能由TEE访问，explict SELinux policy
 
 #. Face Authentication HIDL
 
-For devices to comply with the strong biometric requirements for Android 10, they must have secure hardware to ensure the integrity of face data and the ultimate authentication comparison.
+    For devices to comply with the strong biometric requirements for Android 10, they must have secure hardware to ensure the integrity of face data and the ultimate authentication comparison.
 
-Additionally, secure camera hardware is required to prevent injection attacks on face authentication. For example, the associated memory pages for image data could be privileged and marked read-only so only the camera hardware can update them.
+    Additionally, secure camera hardware is required to prevent injection attacks on face authentication. For example, the associated memory pages for image data could be privileged and marked read-only so only the camera hardware can update them.
 
 Protected Confirmation
 -------------------------
