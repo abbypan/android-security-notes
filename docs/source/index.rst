@@ -82,6 +82,13 @@ Android安全笔记
 
 .. toctree::
    :maxdepth: 1
-   :caption: Research
+   :caption: Connectivity
 
-   research/nearby-threats
+   conn/nearby-threats
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: DNS
+
+   dns/bionic-dns

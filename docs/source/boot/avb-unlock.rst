@@ -23,3 +23,8 @@ unlock credential 由 puk 对 unlock_challenge 签名。注意unlock_challenge�
 - `rk AVB Reference <https://github.com/ericsonj/tools/blob/master/linux/Linux_SecurityAVB/readme.md>`_
 - `at_auth_unlock.py <https://android.googlesource.com/platform/external/avb/+/refs/heads/main/tools/at_auth_unlock.py>`_
 - `avb_atx_generate_test_data <https://cs.android.com/android/platform/superproject/+/android14-qpr3-release:external/avb/test/avb_atx_generate_test_data?q=%20permanent_attributes.bin>`_
+- `avb_cert_types <https://android.googlesource.com/platform/external/avb/+/refs/heads/main/libavb_cert/avb_cert_types.h>`_
+- `avb test <https://android.googlesource.com/platform/external/avb/+/refs/heads/main/test>`_
+
+
+
