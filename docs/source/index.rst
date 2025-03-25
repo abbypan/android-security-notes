@@ -20,7 +20,7 @@ Android安全笔记
    :maxdepth: 1
    :caption: Boot
 
-   boot/index
+   boot/partition
    boot/avb
    boot/avb-unlock
    boot/ods
