@@ -89,6 +89,12 @@ Android安全笔记
 
 .. toctree::
    :maxdepth: 1
+   :caption: Permission
+
+   perm/req
+
+.. toctree::
+   :maxdepth: 1
    :caption: DNS
 
    dns/bionic-dns
