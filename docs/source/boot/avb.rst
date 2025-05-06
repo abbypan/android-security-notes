@@ -1,5 +1,5 @@
-AVB
-===============
+Secure Boot + AVB
+====================
 
 链式签名信任，上一级img硬编码下一级img的签名公钥
 
@@ -74,3 +74,7 @@ system_other partition可以有/product/etc/security/avb/system_other.avbpubkey�
 - `android verified boot 2.0 <https://android.googlesource.com/platform/external/avb/+/master/README.md>`_
 - `Verified Boot <https://source.android.com/security/verifiedboot>`_
 - `HKG18-124 Android Verified Boot 2.0 and U-boot <https://static.linaro.org/connect/hkg18/presentations/hkg18-124.pdf>`_
+- `Summary of TrustFence keys <https://docs.digi.com/resources/documentation/digidocs/embedded/android/dea11/cc8x/android-trustfence_c_key-summary.html#avb-keys>`_
+- `qualcomm Secure boot <https://docs.qualcomm.com/bundle/publicresource/topics/80-70014-11/secure-boot.html>`_
+- `Secure boot flow <https://docs.digi.com/resources/documentation/digidocs/embedded/android/dea11/cc8mmini/android-trustfence_r_secure-boot-flow>`_
+

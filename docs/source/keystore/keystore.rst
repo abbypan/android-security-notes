@@ -7,6 +7,8 @@ Keystore
 
 `Trusty Keystore <https://projectacrn.github.io/2.0/tutorials/trustyACRN.html>`_
 
+`Dissecting the Modern Android Data Encryption Scheme <https://hardwear.io/netherlands-2023/presentation/dissecting-the-modern-android-data-encryption-scheme.pdf>`_
+
 
 Features
 ----------
@@ -79,4 +81,5 @@ Authorization Tags
 -------------------
 
 主要是访问控制的相关参数，例如`Tag::APPLICATION_ID`等。
+
 

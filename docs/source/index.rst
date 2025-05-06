@@ -22,6 +22,7 @@ Android安全笔记
 
    boot/partition
    boot/avb
+   boot/dm-verity
    boot/avb-unlock
    boot/ods
 
@@ -56,6 +57,7 @@ Android安全笔记
    keystore/keystore
    keystore/rkp
    keystore/mtk-att-key
+   keystore/key-import
 
 
 .. toctree::
@@ -92,6 +94,21 @@ Android安全笔记
    :caption: Permission
 
    perm/req
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Kernel
+
+   kernel/gki
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: SE
+
+   se/ready-se
+
 
 .. toctree::
    :maxdepth: 1
