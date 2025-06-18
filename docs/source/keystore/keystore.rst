@@ -82,4 +82,8 @@ Authorization Tags
 
 主要是访问控制的相关参数，例如`Tag::APPLICATION_ID`等。
 
+Security Level
+------------------
+
+`SecurityLevel.aidl <https://android.googlesource.com/platform/hardware/interfaces/+/refs/heads/main/keymaster/aidl/android/hardware/keymaster/SecurityLevel.aidl>`_
 

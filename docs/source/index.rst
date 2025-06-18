@@ -21,6 +21,7 @@ Android安全笔记
    :caption: Boot
 
    boot/partition
+   boot/fastboot
    boot/avb
    boot/dm-verity
    boot/avb-unlock

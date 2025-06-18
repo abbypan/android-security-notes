@@ -19,11 +19,20 @@ Synthetic Password
 
 Synthetic Password 可以由 Gatekeeper + Keymaster 保护，也可以由 Weaver 保护。
 
-User Credential / Escrow Token 派生KEK，用于保护 Synthetic Password。
+User LockScreenCredential / Escrow Token 派生KEK，用于保护 Synthetic Password。
 
 Keymaster 也生成一个KM Key保护Synthetic Password。
 
 改User Credential，不改 Synthetic Password。
+
+`SyntheticPasswordManager.java <https://android.googlesource.com/platform/frameworks/base/+/android-11.0.0_r20/services/core/java/com/android/server/locksettings/SyntheticPasswordManager.java>`_
+
+当escrow token开启时，SP_E0_NAME, SP_P1_NAME 可协助恢复SyntheticPassword
+
+    SyntheticPassword = hash( P0 || P1 )
+
+SyntheticPassword 可派生 disk enc key, keystore enc key, gatekeeper auth key, vendor auth secret 等。
+
 
 Gatekeeper
 -----------
