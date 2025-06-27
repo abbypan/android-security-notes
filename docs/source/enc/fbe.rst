@@ -1,7 +1,6 @@
 FBE
 =======
 
-`qualcomm: File based encryption <https://www.qualcomm.com/media/documents/files/file-based-encryption.pdf>`_
 
 android background
 --------------------
@@ -128,3 +127,10 @@ AES-XTS
 注意XTS是有2个key的，K1用于blockencryption，K2用于输入输出的前后异或。因此，AES256-XTS的KEY是64 bytes，K1/K2各32bytes。
 
 显然XTS会比ESSIV要好。
+
+doc
+------------
+
+- `qualcomm: File based encryption <https://www.qualcomm.com/media/documents/files/file-based-encryption.pdf>`_
+- `Dissecting the Modern Android Data Encryption Scheme <https://hardwear.io/netherlands-2023/presentation/dissecting-the-modern-android-data-encryption-scheme.pdf>`_
+- `Connection between PIN/password and encryption keys in Android <https://security.stackexchange.com/questions/196230/connection-between-pin-password-and-encryption-keys-in-android>`_
