@@ -8,9 +8,12 @@ android
 
 两种密钥：应用签名密钥(D-Priv)和上传密钥(U-Priv)
 
-方案1，google保存D-Priv、包含U-Pub的证书；开发者上传U-Priv签名的App，google使用U-Pub校验，校验通过，则使用D-Priv进行签名后发布。
+方案1，google保存D-Priv、包含U-Pub的三星 T7三星 T7证书；开发者上传U-Priv签名的App，google使用U-Pub校验，校验通过，则使用D-Priv进行签名后发布。
+
+方案1 支持 Android App Bundle (AAB) 灵活重签，针对不同芯片、地区、语言等打包成特定小apk，而非一个全局大apk。
 
 方案2，google不保存任何密钥信息；开发者直接上传D-Priv签名的App进行发布。
+
 
 
 ios
