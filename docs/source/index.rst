@@ -70,10 +70,11 @@ Android安全笔记
 
 .. toctree::
    :maxdepth: 1
-   :caption: APP Signing
+   :caption: APP
 
-   app-signing/app-signing
-   app-signing/apk-signature-scheme
+   app/app-signing
+   app/apk-signature-scheme
+   app/app-sec
 
 
 .. toctree::
@@ -94,7 +95,7 @@ Android安全笔记
    :maxdepth: 1
    :caption: Permission
 
-   perm/req
+   perm/perm-req
 
 
 .. toctree::
